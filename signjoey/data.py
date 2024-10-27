@@ -7,8 +7,8 @@ import sys
 import random
 
 import torch
-from torchtext.legacy import data
-from torchtext.legacy.data import Dataset, Iterator
+from torchtext import data
+from torchtext.data import Dataset, Iterator
 import socket
 from signjoey.dataset import SignTranslationDataset
 from signjoey.vocabulary import (

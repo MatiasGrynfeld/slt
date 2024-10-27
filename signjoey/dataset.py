@@ -2,8 +2,8 @@
 """
 Data module
 """
-from torchtext.legacy import data
-from torchtext.legacy.data import Field, RawField
+from torchtext import data
+from torchtext.data import Field, RawField
 from typing import List, Tuple
 import pickle
 import gzip
@@ -11,6 +11,8 @@ import torch
 
 
 def load_dataset_file(filename):
+    print(f"loading {filename}")
+    torch.cuda.empty_cache()
     with gzip.open(filename, "rb") as f:
         loaded_object = pickle.load(f)
         return loaded_object

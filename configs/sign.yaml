@@ -56,9 +56,9 @@ training:
     eval_metric: bleu
     optimizer: adam
     learning_rate: 0.001
-    batch_size: 32
+    batch_size: 16
     num_valid_log: 5
-    epochs: 5000000
+    epochs: 1 #5000000
     early_stopping_metric: eval_metric
     batch_type: sentence
     translation_normalization: batch
