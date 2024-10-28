@@ -8,8 +8,8 @@ import random
 import torch
 from torchtext import data
 from torchtext.data import Dataset, Iterator
-from signjoey.dataset import SignTranslationDataset
-from signjoey.vocabulary import build_vocab, Vocabulary, UNK_TOKEN, EOS_TOKEN, BOS_TOKEN, PAD_TOKEN
+from dataset import SignTranslationDataset
+from vocabulary import build_vocab, Vocabulary, UNK_TOKEN, EOS_TOKEN, BOS_TOKEN, PAD_TOKEN
 
 def load_data(data_cfg: dict, num_samples: int = 1) -> (Dataset, Dataset, Dataset, Vocabulary, Vocabulary):
     """
@@ -94,3 +94,6 @@ def load_data(data_cfg: dict, num_samples: int = 1) -> (Dataset, Dataset, Datase
     gls_field.vocab = gls_vocab
     txt_field.vocab = txt_vocab
     return train_data, dev_data, test_data, gls_vocab, txt_vocab
+
+if __name__ == '__main__':
+    load_data(, 1)

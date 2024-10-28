@@ -92,3 +92,4 @@ class SignTranslationDataset(data.Dataset):
                 )
             )
         super().__init__(examples, fields, **kwargs)
+

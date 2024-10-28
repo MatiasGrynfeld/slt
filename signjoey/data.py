@@ -10,8 +10,8 @@ import torch
 from torchtext import data
 from torchtext.data import Dataset, Iterator
 import socket
-from signjoey.dataset import SignTranslationDataset
-from signjoey.vocabulary import (
+from dataset import SignTranslationDataset
+from vocabulary import (
     build_vocab,
     Vocabulary,
     UNK_TOKEN,
@@ -245,3 +245,8 @@ def make_data_iter(
         )
 
     return data_iter
+
+if __name__=='__main__':
+    print('Data Loading')
+    a = load_data({'data_path': '../data/', 'version': 'phoenix_2014_trans', 'sgn': 'sign', 'txt': 'text', 'gls': 'gloss', 'train': 'PHOENIX2014T/phoenix14t.pami0.train', 'dev': 'PHOENIX2014T/phoenix14t.pami0.dev', 'test': 'PHOENIX2014T/phoenix14t.pami0.test', 'feature_size': 1024, 'level': 'word', 'txt_lowercase': True, 'max_sent_length': 400, 'random_train_subset': -1, 'random_dev_subset': -1})
+    print(vars(a[0][0]))

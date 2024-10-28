@@ -969,7 +969,10 @@ def train(cfg_file: str) -> None:
 
     :param cfg_file: path to configuration yaml file
     """
+    print("Entered train")
     cfg = load_config(cfg_file)
+    print("Data CFG")
+    print(cfg["data"])
 
     # set the random seed
     set_seed(seed=cfg["training"].get("random_seed", 42))
