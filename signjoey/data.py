@@ -254,5 +254,9 @@ if __name__=='__main__':
     glosses = first.gls
     print(len(glosses))
     print(len(lista_tensores))
+    print(type(lista_tensores))
     for i, tensor in enumerate(lista_tensores):
         print(f"Tamaño del tensor {i}: {tensor.shape}")
+        print(f"Tipo del tensor {i}: {tensor.dtype}")
+        print(f"Tipo del primer elemento del tensor {i}: {tensor[0].dtype}")
+        print(f"Primer elemento del tensor {i}: {tensor[0]}")
