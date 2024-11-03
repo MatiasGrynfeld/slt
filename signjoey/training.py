@@ -264,6 +264,7 @@ class TrainManager:
             if self.scheduler is not None
             else None,
         }
+        torch.cuda.empty_cache()
         torch.save(state, model_path)
         if self.ckpt_queue.full():
             to_delete = self.ckpt_queue.get()  # delete oldest ckpt
@@ -969,10 +970,7 @@ def train(cfg_file: str) -> None:
 
     :param cfg_file: path to configuration yaml file
     """
-    print("Entered train")
     cfg = load_config(cfg_file)
-    print("Data CFG")
-    print(cfg["data"])
 
     # set the random seed
     set_seed(seed=cfg["training"].get("random_seed", 42))

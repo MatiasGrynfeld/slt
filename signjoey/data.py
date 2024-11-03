@@ -10,8 +10,8 @@ import torch
 from torchtext import data
 from torchtext.data import Dataset, Iterator
 import socket
-from dataset import SignTranslationDataset
-from vocabulary import (
+from signjoey.dataset import SignTranslationDataset
+from signjoey.vocabulary import (
     build_vocab,
     Vocabulary,
     UNK_TOKEN,
@@ -64,7 +64,7 @@ def load_data(data_cfg: dict) -> (Dataset, Dataset, Dataset, Vocabulary, Vocabul
     level = data_cfg["level"]
     txt_lowercase = data_cfg["txt_lowercase"]
     max_sent_length = data_cfg["max_sent_length"]
-
+    max_sent_length = sys.maxsize
     def tokenize_text(text):
         if level == "char":
             return list(text)
@@ -248,7 +248,40 @@ def make_data_iter(
 
 if __name__=='__main__':
     print('Data Loading')
-    a = load_data({'data_path': '../data/', 'version': 'phoenix_2014_trans', 'sgn': 'sign', 'txt': 'text', 'gls': 'gloss', 'train': 'PHOENIX2014T/phoenix14t.pami0.train', 'dev': 'PHOENIX2014T/phoenix14t.pami0.dev', 'test': 'PHOENIX2014T/phoenix14t.pami0.test', 'feature_size': 1024, 'level': 'word', 'txt_lowercase': True, 'max_sent_length': 400, 'random_train_subset': -1, 'random_dev_subset': -1})
+    a = load_data(
+        {
+            'data_path': '../data/', 
+            'version': 'HOW2SIGN', 
+            'sgn': 'sign', 
+            'txt': 'text', 
+            'gls': 'gloss', 
+            'train': 'HOW2SIGN/train.pkl.gz', 
+            'dev': 'HOW2SIGN/dev.pkl.gz', 
+            'test': 'HOW2SIGN/test.pkl.gz', 
+            'feature_size': 1024, 
+            'level': 'word', 
+            'txt_lowercase': True, 
+            'max_sent_length': 9223372036854775807, 
+            'random_train_subset': -1, 
+            'random_dev_subset': -1
+        }
+    )
+    # a = load_data({
+    #     "data_path": "../data/", 
+    #     "version": "phoenix_2014_trans", 
+    #     "sgn": "sign", 
+    #     "txt": "text", 
+    #     "gls": "gloss", 
+    #     "train": "PHOENIX2014T/phoenix14t.pami0.train", 
+    #     "dev": "PHOENIX2014T/phoenix14t.pami0.dev", 
+    #     "test": "PHOENIX2014T/phoenix14t.pami0.test", 
+    #     "feature_size": 1024, 
+    #     "level": "word", 
+    #     "txt_lowercase": True, 
+    #     "max_sent_length": 400, 
+    #     "random_train_subset": -1, 
+    #     "random_dev_subset": -1
+    # })
     first = a[0][0]
     lista_tensores = first.sgn
     glosses = first.gls

@@ -76,7 +76,8 @@ class SignTranslationDataset(data.Dataset):
                     }
 
         examples = []
-        for s in samples:
+        for index, s in enumerate(samples):
+            #print(f"{index}/{len(samples)}")
             sample = samples[s]
             examples.append(
                 data.Example.fromlist(
@@ -91,5 +92,6 @@ class SignTranslationDataset(data.Dataset):
                     fields,
                 )
             )
+        print("Finished loading")
         super().__init__(examples, fields, **kwargs)
 

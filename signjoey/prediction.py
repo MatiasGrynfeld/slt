@@ -630,7 +630,7 @@ def test(
     def _write_to_file(file_path: str, sequence_ids: List[str], hypotheses: List[str]):
         with open(file_path, mode="w", encoding="utf-8") as out_file:
             for seq, hyp in zip(sequence_ids, hypotheses):
-                out_file.write(seq + "|" + hyp + "\n")
+                out_file.write(f"{seq}|{hyp}\n")
 
     if output_path is not None:
         if do_recognition:
