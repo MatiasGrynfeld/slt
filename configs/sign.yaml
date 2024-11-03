@@ -5,13 +5,13 @@ data:
     sgn: sign
     txt: text
     gls: gloss
-    train: PHOENIX2014T/phoenix14t.pami0.train
-    dev: PHOENIX2014T/phoenix14t.pami0.dev
-    test: PHOENIX2014T/phoenix14t.pami0.test
-    feature_size: 1024
+    train: HOW2SIGN/train.pkl.gz
+    dev: HOW2SIGN/dev.pkl.gz
+    test: HOW2SIGN/test.pkl.gz
+    feature_size: 2172
     level: word
     txt_lowercase: true
-    max_sent_length: 400
+    max_sent_length: 9223372036854775807
     random_train_subset: -1
     random_dev_subset: -1
 testing:
@@ -56,9 +56,9 @@ training:
     eval_metric: bleu
     optimizer: adam
     learning_rate: 0.001
-    batch_size: 16
+    batch_size: 1 #16 #32
     num_valid_log: 5
-    epochs: 3 #5000000
+    epochs: 1000 #5000000
     early_stopping_metric: eval_metric
     batch_type: sentence
     translation_normalization: batch
@@ -67,7 +67,7 @@ training:
     eval_translation_beam_alpha: -1
     overwrite: true
     shuffle: true
-    use_cuda: false #true
+    use_cuda: true
     translation_max_output_length: 30
     keep_last_ckpts: 1
     batch_multiplier: 1
@@ -91,7 +91,7 @@ model:
     tied_softmax: false
     encoder:
         type: transformer
-        num_layers: 3
+        num_layers: 6 #3
         num_heads: 8
         embeddings:
             embedding_dim: 512
@@ -104,7 +104,7 @@ model:
         dropout: 0.1
     decoder:
         type: transformer
-        num_layers: 3
+        num_layers: 6 #3
         num_heads: 8
         embeddings:
             embedding_dim: 512
